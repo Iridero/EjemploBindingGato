@@ -1,0 +1,30 @@
+﻿<Window x:Class="EjemploChidoDeBinding.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EjemploChidoDeBinding"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="440" Width="400">
+    <Window.DataContext>
+        <local:Logica></local:Logica>
+    </Window.DataContext>
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <TextBlock Text="Turno de: "/>
+            <TextBox IsReadOnly="True" Text="{Binding Turno}"/>
+        </StackPanel>
+        <UniformGrid Columns="3" Rows="3">
+            <Button Command="{Binding JugarCommand}" CommandParameter="0" Content="{Binding Estado[0]}"></Button>
+            <Button Command="{Binding JugarCommand}" CommandParameter="1" Content="{Binding Estado[1]}"></Button>
+            <Button Command="{Binding JugarCommand}" CommandParameter="2" Content="{Binding Estado[2]}"></Button>
+            <Button Command="{Binding JugarCommand}" CommandParameter="3" Content="{Binding Estado[3]}"></Button>
+            <Button Command="{Binding JugarCommand}" CommandParameter="4" Content="{Binding Estado[4]}"></Button>
+            <Button Command="{Binding JugarCommand}" CommandParameter="5" Content="{Binding Estado[5]}"></Button>
+            <Button Command="{Binding JugarCommand}" CommandParameter="6" Content="{Binding Estado[6]}"></Button>
+            <Button Command="{Binding JugarCommand}" CommandParameter="7" Content="{Binding Estado[7]}"></Button>
+            <Button Command="{Binding JugarCommand}" CommandParameter="8" Content="{Binding Estado[8]}"></Button>
+        </UniformGrid>
+        
+    </DockPanel>
+</Window>
