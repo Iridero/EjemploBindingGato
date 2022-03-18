@@ -13,7 +13,9 @@
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
             <TextBlock Text="Turno de: "/>
             <TextBox IsReadOnly="True" Text="{Binding Turno}"/>
+            <Button Margin="50 0 0 0" Command="{Binding IniciarCommand}"  Content="Iniciar partida" />
         </StackPanel>
+        <TextBlock DockPanel.Dock="Bottom" Text="{Binding Mensaje}" />
         <UniformGrid Columns="3" Rows="3">
             <Button Command="{Binding JugarCommand}" CommandParameter="0" Content="{Binding Estado[0]}"></Button>
             <Button Command="{Binding JugarCommand}" CommandParameter="1" Content="{Binding Estado[1]}"></Button>
