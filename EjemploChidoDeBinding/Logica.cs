@@ -15,13 +15,14 @@ namespace EjemploChidoDeBinding
         private int[,] lineas;
         public ICommand JugarCommand { get; set; }
         public ICommand IniciarCommand { get; set; }
-        public char Turno { get; set; }
-        public char[] Estado { get; set; }
+        public string Turno { get; set; }
+        public string[] Estado { get; set; }
         public string Mensaje { get; set; }
-
+        public bool Iniciado { get; set; }
 
         public Logica()
         {
+            Iniciado = false;
             IniciarCommand = new RelayCommand(Iniciar);
             JugarCommand = new RelayCommand<string>(Jugar);
             
@@ -36,7 +37,7 @@ namespace EjemploChidoDeBinding
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private bool ganó(char xo)
+        private bool ganó(string xo)
         {
             for (int i = 0; i < 8; i++)
             {
@@ -53,8 +54,9 @@ namespace EjemploChidoDeBinding
         public void Iniciar()
         {
             Mensaje = String.Empty;
-            Estado = new char[] { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
-            Turno = 'X';
+            Estado = new string[] { " ", " ", " ", " ", " ", " ", " ", " ", " " };
+            Turno = "X";
+            Iniciado = true;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
         }
 
@@ -62,21 +64,23 @@ namespace EjemploChidoDeBinding
         {
             int i = int.Parse(valor);
             Estado[i] = Turno;
-            Turno = (Turno == 'X') ? 'O' : 'X';
-            if (ganó('X'))
+            Turno = (Turno == "X") ? "O" : "X";
+            if (ganó("X"))
 
             {
                 Mensaje = "Ganó X";
+                Iniciado = false;
             }
-            if (ganó('O'))
+            if (ganó("O"))
 
             {
                 Mensaje = "Ganó O";
+                Iniciado = false;
             }
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
             Trace.WriteLine($"Le diste clic al {valor}");
-            Trace.WriteLine(new String(Estado));
+            //Trace.WriteLine(new String(Estado));
 
 
         }

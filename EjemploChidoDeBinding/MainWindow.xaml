@@ -9,6 +9,9 @@
     <Window.DataContext>
         <local:Logica></local:Logica>
     </Window.DataContext>
+    <Window.Resources>
+        
+    </Window.Resources>
     <DockPanel>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
             <TextBlock Text="Turno de: "/>
@@ -16,7 +19,18 @@
             <Button Margin="50 0 0 0" Command="{Binding IniciarCommand}"  Content="Iniciar partida" />
         </StackPanel>
         <TextBlock DockPanel.Dock="Bottom" Text="{Binding Mensaje}" />
-        <UniformGrid Columns="3" Rows="3">
+        <UniformGrid Columns="3" Rows="3" IsEnabled="{Binding Iniciado}">
+            <UniformGrid.Resources>
+                <Style TargetType="Button" >
+                   
+                    <Style.Triggers>
+                        
+                        <Trigger Property="Content" Value="X">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </UniformGrid.Resources>
             <Button Command="{Binding JugarCommand}" CommandParameter="0" Content="{Binding Estado[0]}"></Button>
             <Button Command="{Binding JugarCommand}" CommandParameter="1" Content="{Binding Estado[1]}"></Button>
             <Button Command="{Binding JugarCommand}" CommandParameter="2" Content="{Binding Estado[2]}"></Button>
